@@ -1,16 +1,89 @@
-# React + Vite
+Live Site: https://react-toggle-theme.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Theme Toggle
+A modern React application demonstrating state management, context API, and localStorage persistence for theme preferences.
 
-Currently, two official plugins are available:
+Features:
+   * Light/Dark theme toggle with smooth transitions
+   * Persistent theme selection across browser sessions
+   * Global state management using React Context API
+   * Optimized with lazy state initialization
+   * Fully responsive design
+   * Dynamic CSS variables for theme consistency
+     
+Tech Stack:
+   * Frontend: React 18+
+   * Hooks: useState, useEffect, useContext
+   * Persistence: localStorage API
+   * Styling: CSS Variables + Dynamic Styles
+   * Build Tool: Vite
+     
+Quick Start:
+   # Clone repository
+   git clone https://github.com/MohamedShalikM/react-toggleTheme.git
+   cd react-theme-toggle
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   # Install dependencies
+   npm install
 
-## React Compiler
+   # Start development server
+   npm run dev
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   # Build for production
+   npm run build
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ Implementation Highlights:
+   Lazy State Initialization:
+     const [theme, setTheme] = useState(() => 
+     localStorage.getItem('theme') || 'light');
+     
+   Side Effect Management:
+     useEffect(() => {
+     localStorage.setItem('theme', theme);
+     document.body.className = theme;}, [theme]);
+     
+  Global State with Context:
+     const ThemeContext = createContext();
+     <ThemeProvider>
+     <Navbar />
+     <ThemeToggle />
+     </ThemeProvider>
+     
+Key Concepts Demonstrated:
+    * State Persistence: Theme survives browser refresh
+    * Context API: No prop drilling across components
+    * Performance: Lazy initialization prevents hydration mismatch
+    * Side Effects: Proper useEffect dependency management
+    * Component Architecture: Separation of concerns
+    
+Challenges Overcome:
+    * Race condition between initial render and localStorage load
+    * Global state synchronization across multiple components
+    * Memory leak prevention in useEffect cleanup
+    * CSS-in-JS dynamic styling optimization
+    
+ Learning Outcomes:
+     * Mastered React Hooks fundamentals
+     * Implemented production-grade state persistence
+     * Context API for scalable state management
+     * Performance optimization techniques
+     * Real-world debugging and problem-solving
+     
+Deployment:
+     * npm run build
+     * npx vite preview
+
+Why This Project?
+  This implementation showcases modern React patterns used in production applications:
+     * No Redux boilerplate - Context API sufficient
+     * No external state libraries needed
+     * Follows React performance best practices
+     * Production-ready error handling
+     * Scalable architecture
+
+Built with React best practices | Production-ready patterns | Interview-ready showcase
+
+Author: Mohamed Shalik M | January 2026
+
+  
